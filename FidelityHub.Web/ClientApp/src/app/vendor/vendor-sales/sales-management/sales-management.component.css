@@ -1,0 +1,52 @@
+.commands-row {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.command-bar {
+  margin-bottom: 5px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.filter-central-icon {
+  font-size: 76px;
+}
+
+.nodata-text {
+  text-align: center;
+  margin-top: 10px !important;
+}
+
+.sub-checkbox {
+  margin-left: 12px;
+}
+
+.filter-header {
+  font-weight: bold;
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+}
+
+.filter-sidenav {
+  padding: 15px;
+  width: 100%;
+}
+
+.checkbox-column {
+  margin-left: 3px;
+}
+
+.filter-header-title {
+  margin-left: 5px;
+}
+
+.filter-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.data-buttons {
+  margin-right: 10px;
+}

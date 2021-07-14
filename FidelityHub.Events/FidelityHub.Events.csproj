@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\iFood\" />
+    <Folder Include="Controllers\Amazon\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FidelityHub.Application\FidelityHub.Application.csproj" />
+    <ProjectReference Include="..\FidelityHub.Communication\FidelityHub.Communication.csproj" />
+    <ProjectReference Include="..\FidelityHub.Database\FidelityHub.Database.csproj" />
+    <ProjectReference Include="..\FidelityHub.Infrastructure\FidelityHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\FidelityHub.Persistence\FidelityHub.Persistence.csproj" />
+  </ItemGroup>
+
+
+</Project>

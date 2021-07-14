@@ -1,0 +1,34 @@
+.dashboard-card 
+.expanded-mobile {
+    height: 90%;
+}
+
+.dashboard-card 
+mat-card-header
+{
+    height: 50%;
+}
+  
+.dashboard-card 
+mat-card-content
+{
+    height: 50%;
+    padding-right: 20px;
+    padding-left: 16px;
+    overflow: auto;
+}
+  
+.dashboard-card 
+mat-card-content
+span
+{
+    font-size: 23px;
+}
+
+.mat-card-header-text {
+    width: 100% !important;
+}
+
+.mat-card-title {
+    width: 100%;
+}

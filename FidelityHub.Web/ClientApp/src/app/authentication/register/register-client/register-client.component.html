@@ -1,0 +1,58 @@
+<mat-vertical-stepper [linear]="true" #stepper>
+    <!-- Step 1 -->
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Dados de Usuário</ng-template>
+        <!-- Email -->
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required (change)="getEmailExists()">
+        </mat-form-field>
+        <mat-error *ngIf="!emailValid && firstFormGroup.controls['email'].touched 
+            && !firstFormGroup.controls['email'].errors?.duplicate">
+            Por favor insira um email valido
+        </mat-error>
+        <mat-error *ngIf="firstFormGroup.controls['email'].errors?.duplicate 
+            && firstFormGroup.controls['email'].touched">
+            Esta email já está em uso
+        </mat-error>
+        <!-- Password -->
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input type="password" matInput formControlName="password" required>
+        </mat-form-field>
+        <mat-error *ngIf="!passwordValid && firstFormGroup.controls['password'].touched">
+          {{badPasswordMessage}}
+        </mat-error>
+        <!-- Confirmation -->
+        <mat-form-field>
+            <mat-label>Confirme sua Senha</mat-label>
+            <input type="password" matInput formControlName="passwordConfirm" required>
+        </mat-form-field>
+        <mat-error *ngIf="!passwordConfirmValid && firstFormGroup.controls['passwordConfirm'].touched && passwordsMatch">
+          {{badPasswordMessage}}
+        </mat-error>
+        <mat-error *ngIf="!passwordsMatch">
+            Suas senhas não são iguais
+        </mat-error>
+      </form>
+    </mat-step>
+    <!-- Step 2 (Optional) -->
+    <mat-step [optional]="true" optionalLabel="'Opcional'">
+        <ng-template matStepLabel>Dados Pessoais</ng-template>
+        <mat-label>Em breve...</mat-label>
+    </mat-step>
+    <!-- Final -->
+    <mat-step>
+      <ng-template matStepLabel>Concluir</ng-template>
+        <div fxLayout="row">
+          <span class="review-label">Email: &nbsp;</span>
+          <p>{{this.firstFormGroup.controls['email'].value}}</p>
+        </div>
+      
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="stepper.reset()">Recomeçar</button>
+        <button mat-raised-button (click)="registerUser()">Confirmar</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>

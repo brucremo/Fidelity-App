@@ -1,0 +1,45 @@
+<div fxLayout="column">
+    <mat-progress-bar mode="indeterminate" *ngIf="isBusy"></mat-progress-bar>
+
+    <!-- FidelityHub Login -->
+    <mat-form-field class="full-width primary-color-login" color="white" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="usuario@email.com" [(ngModel)]="userName" [disabled]="isBusy" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width primary-color-login" color="white" appearance="fill">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="********" type="password" [(ngModel)]="password" [disabled]="isBusy" />
+    </mat-form-field>
+
+    <div fxLayout="row" class="full-width" fxLayoutAlign="space-between center" fxLayout.lt-md="column"
+        [ngClass]="{
+        'full-width-buttons':
+        (isHandset | async) || (isSmall | async) || (isXSmall | async) }">
+        <button mat-button (click)="login()" class="mat-elevation-z8">
+            Entrar
+        </button>
+        <button mat-button (click)="forgotPassword()" class="mat-elevation-z8">
+            Esqueceu sua senha?
+        </button>
+        <button mat-button (click)="goToRegister()" class="mat-elevation-z8">
+            Inscreva-se
+        </button>
+    </div>
+
+    <div fxLayout="row">
+        <hr class="separator-line" noshade />
+    </div>
+
+    <!-- Third Party Login -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="space-between center"
+        fxLayoutAlign="space-between center"
+        class="third-party-buttons">
+        <cool-google-button color="dark" (click)="googleLogin()" class="third-party-login">
+            Entre com Google
+        </cool-google-button>
+        <cool-facebook-button color="dark" (click)="facebookLogin()" class="third-party-login" style="margin-top: 10px;">
+            Entre com Facebook
+        </cool-facebook-button>
+    </div>
+</div>

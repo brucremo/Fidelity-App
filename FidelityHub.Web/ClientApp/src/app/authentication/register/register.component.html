@@ -1,0 +1,31 @@
+<div class="grid-container" fxLayout="column" fxLayoutAlign="start start" fxFill>
+    <h1 class="mat-h1">Crie sua Conta FidelityHub</h1>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+        <div fxLayout="column" fxLayoutAlign="center space-between" *ngIf="isNoneSelected" fxFill>
+            <mat-card (click)="setUserType(type)" fxFlex="45" *ngFor="let type of userTypes" class="usertype-card">
+                <mat-card-content fxLayout="column" class="full-height" fxLayoutAlign="space-evenly center">
+                    <mat-card-title class="usertype-title" fxLayout="row">
+                        {{ type.name }}
+                    </mat-card-title>
+                    <mat-card-title class="usertype-icon">
+                        <span class="material-icons login-material-icons">
+                            {{ type.icon }}
+                        </span>
+                    </mat-card-title>
+                    <mat-card-title class="usertype-subtitle" fxLayout="row">
+                        {{ type.description }}
+                    </mat-card-title>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center space-between" *ngIf="!isNoneSelected" fxFill>
+            <app-register-client *ngIf="isClientSelected" class="registration-subcomponent">
+            </app-register-client>
+    
+            <app-register-vendor *ngIf="isVendorSelected" class="registration-subcomponent">
+            </app-register-vendor>
+        </div>
+    </div>
+</div>

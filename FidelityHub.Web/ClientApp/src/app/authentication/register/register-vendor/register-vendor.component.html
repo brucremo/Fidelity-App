@@ -1,0 +1,294 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+  <mat-card
+    fxFlex.xl="80"
+    fxFlex.lg="80"
+    fxFlex.md="80"
+    fxLayoutAlign="center"
+    class="mat-elevation-z20"
+  >
+    <div fxLayout="column" fxLayoutAlign="start center" class="full-width">
+      <mat-card-title fxLayoutAlign="center">
+        FidelityHub - Cadastro de Lojista
+      </mat-card-title>
+
+      <mat-card-content
+        class="login-input-area"
+        class="full-width standard-spacing"
+      >
+        <mat-horizontal-stepper
+          [linear]="false"
+          #stepper
+          class="register-stepper"
+        >
+          <!--Step 1-->
+          <mat-step [stepControl]="subscriptionForm">
+            <form [formGroup]="registerForm">
+              <ng-template matStepLabel>Assinatura</ng-template>
+              <div
+                fxLayout="row"
+                fxLayoutAlign="space-between center"
+                class="subscriptions-row"
+              >
+                <mat-card
+                  (click)="selectSubscription(sub)"
+                  fxFlex="45"
+                  *ngFor="let sub of subscriptions"
+                  class="subscription-card"
+                  [ngClass]="{
+                    'subscription-card-selected':
+                      this.subscriptionForm.controls['subscriptionId'].value ===
+                      sub.id
+                  }"
+                >
+                  <mat-card-content fxLayout="column">
+                    <mat-card-title class="subscription-title">
+                      {{ sub.title }}</mat-card-title
+                    >
+                    <mat-card-title class="subscription-subtitle">
+                      {{ sub.description }}</mat-card-title
+                    >
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </form>
+          </mat-step>
+
+          <!--Step 2-->
+          <mat-step [stepControl]="userForm">
+            <form [formGroup]="userForm">
+              <ng-template matStepLabel>Usuário</ng-template>
+              <div fxLayout="column">
+                <mat-label class="step-label">Cadastro</mat-label>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Usuário</mat-label>
+                    <input matInput formControlName="userName" (change)="getUserNameExists()" required />
+                    <mat-error *ngIf="!userNameControl.valid"> Usuario existente </mat-error>
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Senha</mat-label>
+                    <input
+                      type="password"
+                      matInput
+                      formControlName="password"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" (change)="getEmailExists()" required />
+                    <mat-error *ngIf="!emailControl.valid"> Email existente </mat-error>
+                  </mat-form-field>
+                </div>
+                <mat-label class="step-label">Informações Pessoais</mat-label>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="firstName" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Sobrenome</mat-label>
+                    <input matInput formControlName="lastName" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="30"
+                  >
+                    <mat-label>Telefone</mat-label>
+                    <input matInput formControlName="phone" required />
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <!--Step 3-->
+          <mat-step [stepControl]="businessForm">
+            <form [formGroup]="businessForm">
+              <ng-template matStepLabel>Negócio</ng-template>
+              <div fxLayout="column">
+                <mat-label class="step-label">Identificação</mat-label>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="45"
+                  >
+                    <mat-label>Razão Social/Nome</mat-label>
+                    <input matInput formControlName="legalName" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="45"
+                  >
+                    <mat-label>CNPJ/CPF do Responsável</mat-label>
+                    <input matInput formControlName="governmentId" required />
+                  </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                  <mat-form-field
+                  class="full-width"
+                  color="white"
+                  appearance="fill"
+                  fxFlex="45"
+                >
+                  <mat-label>Indústria</mat-label>
+                  <input matInput formControlName="lobId" [matAutocomplete]="auto" required>
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of lobs" [value]="option.descricao">
+                      {{option.descricao}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field
+                  class="full-width"
+                  color="white"
+                  appearance="fill"
+                  fxFlex="45"
+                >
+                  <mat-label>Descrição</mat-label>
+                  <input matInput formControlName="description" />
+                </mat-form-field>
+                </div>
+
+                <mat-label class="step-label">Dados da Matriz</mat-label>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>CEP</mat-label>
+                    <input matInput formControlName="postalCode" (change)="onPostalCodeComplete()" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Numero</mat-label>
+                    <input matInput formControlName="streetNumber" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Complemento</mat-label>
+                    <input matInput formControlName="complement"/>
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Bairro</mat-label>
+                    <input matInput formControlName="region" required />
+                  </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="full-width">
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Logradouro</mat-label>
+                    <input matInput formControlName="street" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Cidade</mat-label>
+                    <input matInput formControlName="city" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>Estado</mat-label>
+                    <input matInput formControlName="state" required />
+                  </mat-form-field>
+                  <mat-form-field
+                    class="full-width"
+                    color="white"
+                    appearance="fill"
+                    fxFlex="23"
+                  >
+                    <mat-label>País</mat-label>
+                    <input matInput formControlName="country" required />
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <!--Step 4-->
+          <mat-step>
+            <form [formGroup]="registerForm">
+              <ng-template matStepLabel>Confirmar</ng-template>
+              <div fxLayout="column" fxLayoutAlign="start space-evenly">
+                <mat-label class="step-label">Assinatura</mat-label>
+                <mat-label>{{selectedSubscription.title}}</mat-label>
+                <mat-label>{{selectedSubscription.description}}</mat-label>
+
+                <div fxLayout="row" fxLayoutAlign="space-evenly start">
+                  <mat-label class="step-label">Registro do Usuário</mat-label>
+                  <div fxLayout="column" fxLayoutAlign="start space-evenly">
+                    <mat-label>{{selectedSubscription.title}}</mat-label>
+                    <mat-label>{{selectedSubscription.title}}</mat-label>
+                    <mat-label>{{selectedSubscription.title}}</mat-label>
+                  </div>
+                  <div fxLayout="column" fxLayoutAlign="start space-evenly">
+                    <mat-label>{{selectedSubscription.title}}</mat-label>
+                    <mat-label>{{selectedSubscription.title}}</mat-label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,50 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="grid-container full-height margin-component">
+  <mat-grid-list
+    [cols]="(isHandset | async) ? '2' : '4'"
+    [rowHeight]="rowHeight"
+    *ngIf="showDashboardData"
+    class="promotion-grid"
+  >
+    <mat-grid-tile
+      *ngFor="let card of cards; let i = index"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <app-customer-promotion-card class="dashboard-card" [data]="card.data">
+      </app-customer-promotion-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <ng-container *ngIf="showLoading">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxFlex
+      class="loading-block"
+    >
+      <div fxLayout="column" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="showNoData">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxFlex
+      class="loading-block"
+    >
+      <div fxLayout="column" fxLayoutAlign="space-between center" fxFlex>
+        <h2 class="nodata-text">
+          Você ainda não faz parte de nenhum programa de fidelidade
+        </h2>
+        <span class="material-icons nodata-icon">
+          sentiment_very_dissatisfied
+        </span>
+        <h2 class="nodata-text">
+          Mostre seu QR Code para um estabelecimento parceiro da FidelityHub
+          para participar!
+        </h2>
+      </div>
+    </div>
+  </ng-container>
+</div>

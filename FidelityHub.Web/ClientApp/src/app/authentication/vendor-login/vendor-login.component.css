@@ -1,0 +1,150 @@
+mat-card {
+    color: white;
+    background: #673ab7;
+}
+
+.login-material-icons {
+    font-size: 50px;
+}
+
+.login-card {
+    width: 100%;
+    height: 100%;
+}
+
+.login-button {
+    height: 48px;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: white;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+}
+
+
+/* Font color */
+
+input.mat-input-element {
+    color: white;
+}
+
+.login-input-area {
+    width: 90%;
+}
+
+button {
+    color: #673ab7;
+    background: white;
+}
+
+ .mat-form-field-ripple .primary-color-login{
+    background-color: white !important;
+}
+
+.standard-spacing {
+    margin-top: 12px !important;
+}
+
+.mat-form-field.mat-white {
+    color: white;
+}
+
+mat-label {
+    color: white;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.usertypes-row {
+    height: 100%;
+}
+
+.usertype-card:hover {
+    background-color: white;
+    color: #673ab7 !important;
+}
+
+.usertype-card-selected {
+    background-color: white;
+    color: #673ab7 !important;
+}
+
+.usertype-title {
+    text-align: center;
+}
+
+.usertype-subtitle {
+    margin-top: 3%;
+    font-size: 18px;
+}
+
+.usertype-card {
+    height: 250px;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+  .mat-step-label .primary-color-login{
+    color: white !important;
+}
+
+.register-stepper {
+    background: #673ab7 !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: white;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+}
+
+
+/* Font color */
+
+input.mat-input-element {
+    color: white;
+}
+
+.login-input-area {
+    width: 90%;
+    height: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+button {
+    color: #673ab7;
+    background: white;
+}
+
+ .mat-form-field-ripple {
+    background-color: white !important;
+}
+
+.standard-spacing {
+    margin-top: 12px !important;
+}
+
+.mat-form-field.mat-white {
+    color: white;
+}
+
+mat-label {
+    color: white;
+}
+
+mat-option {
+    height: 60px;
+}

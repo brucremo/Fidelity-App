@@ -1,0 +1,153 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="grid-container full-height margin-component">
+    <mat-sidenav-container class="full-height full-width">
+        <mat-sidenav-content>
+            <!-- Command Bar -->
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="command-bar">
+                <button mat-button (click)="return()">
+                    <span class="material-icons">
+                        arrow_back
+                    </span>
+                    <span>
+                        Vendas
+                    </span>
+                </button>
+
+                <div fxLayout="column" fxFlex="20" class="data-buttons">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <button mat-icon-button (click)="toggleSidenav(filterSidenav)" matTooltip="Filtrar Vendas">
+                            <span class="material-icons">
+                                filter_alt
+                            </span>
+                        </button>
+                        <button mat-icon-button [matMenuTriggerFor]="sortMenu" *ngIf="sortOptions"
+                            matTooltip="Ordenar Vendas">
+                            <span class="material-icons">
+                                sort
+                            </span>
+                        </button>
+                        <mat-menu #sortMenu="matMenu">
+                            <button mat-menu-item (click)="sortByDate()">
+                                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                                    <span class="material-icons">
+                                        calendar_today
+                                    </span>
+                                    <span>
+                                        Data
+                                    </span>
+                                </div>
+                            </button>
+                            <button mat-menu-item (click)="sortByStatus()">
+                                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                                    <span class="material-icons">
+                                        rule
+                                    </span>
+                                    <span>
+                                        Status
+                                    </span>
+                                </div>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sale List -->
+            <app-sale-list #saleList 
+                *ngIf="!isBusy && viewModel" 
+                [viewModel]="viewModel"
+                (verifyClicked)="verifySale($event)" 
+                (removeClicked)="removeSale($event)"
+                class="full-width full-height">
+            </app-sale-list>
+
+            <app-full-loading *ngIf="isBusy" class="full-width full-height"></app-full-loading>
+
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!viewModel" fxFill>
+                <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                    <span class="material-icons filter-central-icon">
+                        filter_alt
+                    </span>
+                    <h2>Selecione um filtro acima</h2>
+                </div>
+            </div>
+        </mat-sidenav-content>
+        <mat-sidenav #filterSidenav mode="side" position="end" class="filter-sidenav">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <h4 class="filter-header">
+                    <div fxLayout="row">
+                        <span class="material-icons">
+                            rule
+                        </span>
+                        <span class="filter-header-title">
+                            Status da Venda
+                        </span>
+                    </div>
+                </h4>
+                <button mat-icon-button style="float: right;">
+                    <span class="material-icons" (click)="toggleSidenav(filterSidenav)">
+                        close
+                    </span>
+                </button>
+            </div>
+            <!-- Status Filter -->
+            <div fxLayout="column" class="checkbox-column">
+                <mat-checkbox color="primary" [(ngModel)]="showApproved" disableRipple (click)="getSales()">
+                    Aprovada
+                </mat-checkbox>
+                <mat-checkbox color="primary" [(ngModel)]="showPending" disableRipple (click)="getSales()">
+                    Pendente
+                </mat-checkbox>
+                <mat-checkbox color="primary" [(ngModel)]="showRemoved" disableRipple (click)="getSales()">
+                    Removida
+                </mat-checkbox>
+            </div>
+            <mat-divider class="filter-divider"></mat-divider>
+            <!-- Period Filter -->
+            <h4 class="filter-header">
+                <div fxLayout="row">
+                    <span class="material-icons">
+                        date_range
+                    </span>
+                    <span class="filter-header-title">
+                        Período
+                    </span>
+                </div>
+            </h4>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <mat-form-field fxFlex="80">
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input [(ngModel)]="dateFrom" matStartDate placeholder="De">
+                        <input [(ngModel)]="dateTo" matEndDate placeholder="Até">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+                <button mat-icon-button color="primary" (click)="applyFilters()">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+            <mat-divider class="filter-divider"></mat-divider>
+            <!-- Store Filter -->
+            <h4 class="filter-header">
+                <div fxLayout="row">
+                    <span class="material-icons">
+                        storefront
+                    </span>
+                    <span class="filter-header-title">
+                        Loja
+                    </span>
+                </div>
+            </h4>
+            <div fxLayout="column" class="checkbox-column">
+                <mat-checkbox color="primary" [(ngModel)]="showAllStores" disableRipple disabled>
+                    Todas
+                </mat-checkbox>
+                <!--
+                <mat-checkbox color="primary" disableRipple class="sub-checkbox" *ngFor="let unit of units">
+                    {{unit.description}}
+                </mat-checkbox>-->
+            </div>
+            <mat-divider class="filter-divider"></mat-divider>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,51 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="command-bar">
+    <button mat-button (click)="return()">
+        <span class="material-icons">
+            arrow_back
+        </span>
+        <span>
+            {{previousComponent.title}}
+        </span>
+    </button>
+
+    <div fxLayout="column" fxFlex="20">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-icon-button [matMenuTriggerFor]="filterMenu" *ngIf="filterOptions" matTooltip="Filtrar Vendas">
+                <span class="material-icons">
+                    filter_alt
+                </span>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="sortMenu" *ngIf="sortOptions" matTooltip="Ordenar Vendas">
+                <span class="material-icons">
+                    sort
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Filter Menu -->
+<mat-menu #filterMenu="matMenu">
+    <button mat-menu-item *ngFor="let item of filterOptions">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="material-icons">
+                {{item.icon}}
+            </span>
+            <span class="menu-title">
+                {{item.title}}
+            </span>
+        </div>
+    </button>
+</mat-menu>
+<!-- Sort Menu -->
+<mat-menu #sortMenu="matMenu">
+    <button mat-menu-item *ngFor="let item of sortOptions">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="material-icons">
+                {{item.icon}}
+            </span>
+            <span class="menu-title">
+                {{item.title}}
+            </span>
+        </div>
+    </button>
+</mat-menu>

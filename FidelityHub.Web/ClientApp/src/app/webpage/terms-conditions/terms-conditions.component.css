@@ -1,0 +1,22 @@
+.expanded-mobile {
+    height: 90%;
+}
+
+.promotion-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.nodata-icon {
+  font-size: 80px;
+}
+
+
+.nodata-text {
+  text-align: center;
+  margin-top: 10px !important;
+}
+
+.main-accordion {
+    width: 100%;
+}

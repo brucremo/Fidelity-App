@@ -1,0 +1,22 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isBusy"></mat-progress-bar>
+<mat-form-field class="full-width primary-color-login" color="white" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="usuario@email.com" [(ngModel)]="userName" [disabled]="isBusy" />
+</mat-form-field>
+
+<mat-form-field class="full-width primary-color-login" color="white" appearance="fill">
+    <mat-label>Senha</mat-label>
+    <input matInput placeholder="********" type="password" [(ngModel)]="password" [disabled]="isBusy" />
+</mat-form-field>
+
+<mat-card-actions class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-button (click)="goToRegister()" class="mat-elevation-z8" hidden>
+        Inscreva-se
+    </button>
+    <button mat-button (click)="login()" class="mat-elevation-z8" hidden>
+        Esqueceu sua senha?
+    </button>
+    <button mat-button (click)="login()" class="mat-elevation-z8">
+        Entrar
+    </button>
+</mat-card-actions>

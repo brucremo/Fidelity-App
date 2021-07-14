@@ -1,0 +1,40 @@
+<div fxLayout="column" fxLayoutAlign="start center" class="grid-container full-height margin-component">
+    <!-- Insights -->
+    <div fxLayout="row" class="full-width insights-row" fxFlex="25">
+        <mat-card class="full-width">
+            <div fxLayout="column" fxLayoutAlign="start start" class="full-width" fxFlex>
+                <div fxLayout="row" fxFlex>
+                    <h3>
+                        Estatísticas
+                    </h3>
+                </div>
+                <div fxLayout="row" class="full-width" fxFlex>
+                    <div *ngIf="!isInsightsBusy">
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center" fxFill>
+                        <mat-progress-bar class="insight-loading" mode="indeterminate"></mat-progress-bar>
+                        <span>Em breve...</span>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <!-- Submenus -->
+    <div fxLayout="row" class="full-width" fxFlex>
+        <mat-nav-list class="full-width">
+            <mat-list-item *ngFor="let item of saleItems" (click)="navigateTo(item.link)">
+                <a matLine class="dashboard-menu-item" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="material-icons dashboard-content-icon">
+                        {{item.icon}}
+                    </span>
+                    <span class="panel-title-text">
+                        {{item.title}}
+                    </span>
+                </a>
+                <button mat-icon-button>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
+    </div>
+</div>

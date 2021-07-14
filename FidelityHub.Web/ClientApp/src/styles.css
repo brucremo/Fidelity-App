@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.step-label {
+  font-size: 18px;
+  font: bold;
+  margin-bottom: 10px;
+}
+
+.loading-block {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 48%;
+  margin: 10px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.fill {
+  height: 100%;
+}
+
+.margin-component {
+  margin: 10px;
+}
+
+mat-error {
+  margin-bottom: 10px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

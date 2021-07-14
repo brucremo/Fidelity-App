@@ -1,0 +1,54 @@
+.sale-accordion {
+    height: 100px;
+}
+
+.panel-title-date {
+    margin-left: 10px;
+}
+
+.panel-title {
+    font-size: 14px;
+}
+
+.panel-checkbox {
+    margin-top: 8px;
+    margin-right: 10px;
+}
+
+.panel-text-title {
+    font-weight: bold;
+}
+
+.panel-title-icon {
+    margin-right: 15px;
+}
+
+.icon-red {
+    color: red;
+}
+
+.icon-green {
+    color: green;
+}
+
+.sale-panel {
+    margin-bottom: 10px;
+}
+
+.sale-detail-icon {
+    color: darkorange;
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.sale-detail-icon-pending {
+    color: darkorange;
+}
+
+.sale-detail-icon-approved {
+    color: green;
+}
+
+.sale-detail-icon-removed {
+    color: red;
+}

@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <zxing-scanner
+      *ngIf="openScanner"
+      [formats]="['QR_CODE']"
+      (scanSuccess)="onCodeResult($event)"
+    ></zxing-scanner>
+    <qrcode
+      *ngIf="!openScanner"
+      [qrdata]="userId"
+      [width]="256"
+      [errorCorrectionLevel]="'M'"
+    ></qrcode>
+  </div>
+</div>

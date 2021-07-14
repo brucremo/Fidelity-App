@@ -1,0 +1,158 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset | async) ? 'dialog' : 'navigation'"
+    mode="side">
+    <mat-toolbar>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <button mat-icon-button>
+          <span class="material-icons" (click)="drawer.toggle()">
+            close
+          </span>
+        </button>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center center" fxFlex="90">
+          <a mat-list-item (click)="goHome()">
+            <span class="material-icons title-icon">
+              home
+            </span>
+            <span>
+              Home
+            </span>
+          </a>
+          <a mat-list-item (click)="openBottomSheet(true)" *ngIf="canScan">
+            <span class="material-icons title-icon">
+              qr_code_scanner
+            </span>
+            <span>
+              Escanear
+            </span>
+          </a>
+          <a mat-list-item (click)="navigate('vendor/sales/dashboard')" *ngIf="isVendorAdmin">
+            <span class="material-icons title-icon">
+              request_quote
+            </span>
+            <span>
+              Vendas
+            </span>
+          </a>
+          <a mat-list-item (click)="goToWallet()" *ngIf="isLoggedIn">
+            <span class="material-icons title-icon">
+              account_balance_wallet
+            </span>
+            <span>
+              Carteira
+            </span>
+          </a>
+          <a mat-list-item (click)="goToTermsConditions()">
+            <span class="material-icons title-icon">
+              policy
+            </span>
+            <span>
+              Termos de Uso
+            </span>
+          </a>
+          <mat-divider class="navigation-list-divider"></mat-divider>
+          <mat-nav-list class="user-navigation-list">
+            <a mat-list-item *ngIf="isLoggedIn">
+              <span class="material-icons title-icon">
+                account_box
+              </span>
+              <span>
+                {{loggedInUser}}
+              </span>
+            </a>
+            <a mat-list-item (click)="openLoginDialog()" *ngIf="!isLoggedIn && !isLoginRoute">Login</a>
+            <a mat-list-item class="sub-item" (click)="logout()" *ngIf="isLoggedIn">Logout</a>
+          </mat-nav-list>
+        </div>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar [ngClass]="{
+        'main-toolbar-mobile':
+          (isHandset | async) || (isSmall | async) || (isXSmall | async),
+        'main-toolbar':
+          !((isHandset | async) || (isSmall | async) || (isXSmall | async))
+      }" color="primary" fxLayout="row" fxLayoutAlign="space-between center"
+      fxLayoutAlign.lt-md="space-between center">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="(isHandset | async) || (isSmall | async) || (isXSmall | async)">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span (click)="goHome()" *ngIf="
+          !((isHandset | async) || (isSmall | async) || (isXSmall | async))
+        " [ngClass]="{
+          'central-title':
+            (isHandset | async) || (isSmall | async) || (isXSmall | async)
+        }">FidelityHub</span>
+      <!-- View title -->
+      <div fxLayout="row">
+        <h1 class="view-title">
+        {{currentViewTitle}}
+        </h1>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="
+          !((isHandset | async) || (isSmall | async) || (isXSmall | async))
+        ">
+        <button mat-button (click)="openBottomSheet(false)" *ngIf="!(isHandset | async) && isLoggedIn">
+          <span class="material-icons">
+            qr_code
+          </span>
+        </button>
+        <button mat-button (click)="openBottomSheet(true)" *ngIf="canScan">Escanear</button>
+        <button mat-button [routerLink]="dashboardPath" *ngIf="isLoggedIn">Dashboard</button>
+        <button mat-button (click)="goToTermsConditions()">
+          <span>
+            Termos de Uso
+          </span>
+        </button>
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">
+          {{loggedInUser}}
+          <span class="material-icons">
+            keyboard_arrow_down
+          </span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+        </mat-menu>
+        <button mat-button (click)="openLoginDialog()" *ngIf="!isLoggedIn && !isLoginRoute">Login</button>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="15" *ngIf="(isHandset | async) && isLoggedIn">
+        <button mat-icon-button (click)="openBottomSheet(false)">
+          <span class="material-icons">
+            qr_code
+          </span>
+        </button>
+        <!--
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <span class="material-icons">
+          account_box
+          </span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-button (click)="openLoginDialog()" *ngIf="!isLoggedIn && !isLoginRoute">Login</button>
+          <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+        </mat-menu>-->
+      </div>
+    </mat-toolbar>
+    <!-- Outlet Container -->
+    <div #maincontainer [ngClass]="{
+      'custom-container-mobile':
+        (isHandset | async) || (isSmall | async) || (isXSmall | async),
+      'custom-container':
+        !((isHandset | async) || (isSmall | async) || (isXSmall | async))
+    }">
+      <div [@routeAnimations]="prepareRoute(outlet)" *ngIf="!isBusy; else loading" class="router-outlet-container">
+        <router-outlet #outlet="outlet"> </router-outlet>
+      </div>
+      <ng-template #loading>
+        <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+          <app-full-loading></app-full-loading>
+        </div>
+      </ng-template>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

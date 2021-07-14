@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /favicon.ico
+Disallow: /main-es2015.785e6ac8908632ade29d.js
+Disallow: /main-es5.785e6ac8908632ade29d.js
+Disallow: /polyfills-es2015.ba881eaef75a382b1fb3.js
+Disallow: /polyfills-es5.725ed6b81220c9a5eedf.js
+Disallow: /robots.txt
+Disallow: /runtime-es2015.5d82947e48af57f168c1.js
+Disallow: /runtime-es5.5d82947e48af57f168c1.js
+Disallow: /scripts.5960c173a426c7351b89.js
+Disallow: /styles.4fbfeb0e61a48f41ceb8.css
+
+Sitemap: https://fidelityhub.com.br/sitemap.xml

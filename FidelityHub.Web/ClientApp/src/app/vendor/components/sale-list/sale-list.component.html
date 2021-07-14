@@ -1,0 +1,84 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="full-height">
+    <mat-accordion class="full-height">
+        <mat-expansion-panel *cdkVirtualFor="let sale of saleListModels | async; index as i" class="sale-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title fxLayout="row" fxLayoutAlign="start center" class="panel-title panel-title-unit">
+                    <span class="material-icons sale-detail-icon" 
+                    [ngClass]="{
+                    'sale-detail-icon-removed': sale.removed,
+                    'sale-detail-icon-pending': !sale.approved,
+                    'sale-detail-icon-approved': sale.approved
+                    }">
+                        {{getSaleIcon(sale)}}
+                    </span>
+                    <span class="panel-text panel-title-unit">
+                        {{vendorUnit.description}}
+                    </span>
+                    <span class="panel-text panel-title-date">
+                        {{sale.timestamp | date: "dd/MM/yyyy HH:mm"}}
+                    </span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+                <div fxLayout="row" fxFlex>
+                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxFlex="85">
+                        <div fxLayout="row" fxLayoutAlign="start center" class="full-width">
+                            <div fxLayout="column" fxLayoutAlign="start start">
+                                <span class="panel-text-title">
+                                    Promoção:
+                                </span>
+                                <span class="panel-text">
+                                    {{sale.promotion.description}}
+                                </span>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="full-width">
+                            <div fxLayout="column" fxLayoutAlign="start start">
+                                <span class="panel-text-title">
+                                    Vendedor:
+                                </span>
+                                <span class="panel-text">
+                                    {{sale.sellerName}}
+                                </span>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="full-width">
+                            <div fxLayout="column" fxLayoutAlign="start start">
+                                <span class="panel-text-title">
+                                    Cliente:
+                                </span>
+                                <span class="panel-text">
+                                    {{sale.userName}}
+                                </span>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="start center" class="full-width">
+                            <div fxLayout="column" fxLayoutAlign="start start">
+                                <span class="panel-text-title">
+                                    Quantidade:
+                                </span>
+                                <span class="panel-text">
+                                    {{sale.amount}} venda
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxFlex="8" *ngIf="showCommands">
+                        <button mat-icon-button matTooltip="{{getVerifyButtonTooltip(sale)}}" matTooltipPosition="left"
+                            (click)="verifySale(sale)">
+                            <mat-icon>{{getVerifyButtonIcon(sale)}}</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Editar venda" matTooltipPosition="left"
+                            (click)="editSale(sale)" disabled>
+                            <mat-icon>create</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="{{getRemoveButtonTooltip(sale)}}" matTooltipPosition="left"
+                            (click)="removeSale(sale)">
+                            <mat-icon>{{getRemoveButtonIcon(sale)}}</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-nav-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</cdk-virtual-scroll-viewport>

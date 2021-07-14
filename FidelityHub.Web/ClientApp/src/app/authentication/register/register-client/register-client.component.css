@@ -1,0 +1,15 @@
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    background-color: transparent !important;
+}
+
+.mat-step-label {
+    color: black !important;
+}
+
+.review-label{
+    font-weight: bold;
+}
+
+.mat-vertical-content {
+    margin-left: 0px !important;
+}

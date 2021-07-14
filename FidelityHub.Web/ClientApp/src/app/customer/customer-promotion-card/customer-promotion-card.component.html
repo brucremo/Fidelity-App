@@ -1,0 +1,19 @@
+<mat-card class="dashboard-card" (click)="toggleDetails()">
+  <mat-card-header>
+    <mat-card-title>
+      <span>{{ title }}</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span>{{ vendorUnit }}</span>
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      <span>Válido até {{ endDate | date: "dd/MM/yyyy HH:mm" }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content" fxLayout="row" fxLayoutAlign="space-between center">
+    <span *ngFor="let purchase of purchases" class="material-icons" [matTooltip]="getTooltip(purchase)"
+      [matTooltipDisabled]="disableTooltip(purchase)">
+      {{ purchase | saleStatusIcon }}
+    </span>
+  </mat-card-content>
+</mat-card>

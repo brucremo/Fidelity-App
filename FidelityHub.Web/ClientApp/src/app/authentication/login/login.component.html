@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxLayoutAlign="center" class="mat-elevation-z20 login-card">
+        <div fxLayout="column" fxLayoutAlign="start center" class="full-width">
+            <mat-card-title fxLayoutAlign="center"> FidelityHub </mat-card-title>
+            <mat-card-title fxLayoutAlign="center" class="login-subtitle"> 
+                {{title}} 
+            </mat-card-title>
+
+            <mat-card-content class="login-input-area full-width standard-spacing">
+                <app-customer-login *ngIf="isClientSelected" 
+                    (loginComplete)="completeLogin()"
+                    (registerClicked)="goToRegister(true)"
+                    (forgotPasswordClicked)="toggleForgotPassword($event)"
+                    class="login-subcomponent">
+                </app-customer-login>
+
+                <app-forgot-password *ngIf="showForgotPassword"
+                    (onComplete)="closeDialog()"
+                    (onReturn)="toggleForgotPassword($event)"
+                    class="login-subcomponent">
+                </app-forgot-password>
+            </mat-card-content>
+        </div>
+    </mat-card>
+</div>

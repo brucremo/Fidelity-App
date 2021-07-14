@@ -1,0 +1,7 @@
+{
+    "appService.deploySubpath": "dist",
+    "appService.defaultWebAppToDeploy": "None",
+    "cSpell.words": [
+        "gapi"
+    ]
+}
